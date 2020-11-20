@@ -21,31 +21,9 @@ description: Please see the README on GitHub at <https://github.com/xenopol/adve
 
 dependencies:
   - base >= 4.7 && < 5
+  - tasty
+  - tasty-hunit
 
 library:
   source-dirs:
     - src
-
-executables:
-  advent-of-code-haskell-exe:
-    main: Main.hs
-    source-dirs: app
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-    dependencies:
-      - advent-of-code-haskell
-
-tests:
-  advent-of-code-haskell-test:
-    main: Spec.hs
-    source-dirs:
-      - test
-      - test/2015
-    ghc-options:
-      - -threaded
-      - -rtsopts
-      - -with-rtsopts=-N
-    dependencies:
-      - advent-of-code-haskell
