@@ -8,7 +8,7 @@ main = do
 tests :: TestTree
 tests =
   testGroup
-    "Day 2"
+    "Day 3"
     [ testGroup "Part 1" $ buildTestCases part1 examplesPart1,
       testGroup "Part 2" $ buildTestCases part2 examplesPart2
     ]
