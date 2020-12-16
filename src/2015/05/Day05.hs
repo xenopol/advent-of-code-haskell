@@ -26,24 +26,17 @@ part1 :: String -> Int
 part1 input = length $ filter isGoodString (lines input)
 
 hasAnyTwoLettersTwice :: String -> Bool
-hasAnyTwoLettersTwice xs = test xs False
-  where
-    test _ True = True
-    test [] _ = False
-    test [_] _ = False
-    test (x:y:rest) _ = test (y : rest) ((x : y : []) `isInfixOf` rest)
+hasAnyTwoLettersTwice [] = False
+hasAnyTwoLettersTwice (x : y : xs) = ([x, y] `isInfixOf` xs) || hasAnyTwoLettersTwice (y : xs)
+hasAnyTwoLettersTwice _ = False
 
-hasRepeatingLetter :: String -> Bool
-hasRepeatingLetter xs = test xs False
-  where
-    test _ True = True
-    test [] _ = False
-    test [_] _ = False
-    test [_, _] _ = False
-    test (x:z:y:rest) _ = test (z : y : rest) (x == y)
+hasMirroredLetter :: String -> Bool
+hasMirroredLetter [] = False
+hasMirroredLetter (x : y : z : rest) = x == z || hasMirroredLetter (y : z : rest)
+hasMirroredLetter _ = False
 
 isGoodStringPart2 :: String -> Bool
-isGoodStringPart2 xs = hasAnyTwoLettersTwice xs && hasRepeatingLetter xs
+isGoodStringPart2 xs = hasAnyTwoLettersTwice xs && hasMirroredLetter xs
 
 part2 :: String -> Int
 part2 input = length $ filter isGoodStringPart2 (lines input)
