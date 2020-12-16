@@ -25,8 +25,28 @@ isGoodString xs = not (hasBadSubstring xs) && hasDoubleLetter xs && hasThreeVowe
 part1 :: String -> Int
 part1 input = length $ filter isGoodString (lines input)
 
+hasAnyTwoLettersTwice :: String -> Bool
+hasAnyTwoLettersTwice xs = test xs False
+  where
+    test _ True = True
+    test [] _ = False
+    test [_] _ = False
+    test (x:y:rest) _ = test (y : rest) ((x : y : []) `isInfixOf` rest)
+
+hasRepeatingLetter :: String -> Bool
+hasRepeatingLetter xs = test xs False
+  where
+    test _ True = True
+    test [] _ = False
+    test [_] _ = False
+    test [_, _] _ = False
+    test (x:z:y:rest) _ = test (z : y : rest) (x == y)
+
+isGoodStringPart2 :: String -> Bool
+isGoodStringPart2 xs = hasAnyTwoLettersTwice xs && hasRepeatingLetter xs
+
 part2 :: String -> Int
-part2 input = 2
+part2 input = length $ filter isGoodStringPart2 (lines input)
 
 main :: IO ()
 main = do

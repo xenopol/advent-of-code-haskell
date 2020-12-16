@@ -9,8 +9,8 @@ tests :: TestTree
 tests =
   testGroup
     "Day 5"
-    [ testGroup "Part 1" $ buildTestCases part1 examplesPart1
-    -- testGroup "Part 2" $ buildTestCases part2 examplesPart2
+    [ testGroup "Part 1" $ buildTestCases part1 examplesPart1,
+      testGroup "Part 2" $ buildTestCases part2 examplesPart2
     ]
 
 type Examples = [([Char], Int)]
